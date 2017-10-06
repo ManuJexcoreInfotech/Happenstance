@@ -75,4 +75,5 @@
     <plugin name="cordova-plugin-network-information" />
     <plugin name="cordova-plugin-whitelist" />
     <plugin name="cordova-plugin-admob" spec="^3.2.4" />
+    <plugin name="phonegap-plugin-push" spec="^2.0.0" />
 </widget>
