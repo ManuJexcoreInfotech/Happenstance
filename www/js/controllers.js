@@ -861,7 +861,7 @@ angular.module('app.controllers', [])
 						var OAuthToken = response.authResponse.accessToken;
 						var OAuthAccessToken = response.authResponse.userID;
 						if (response.authResponse) {
-							facebookConnectPlugin.api("me/friends",{fields: 'id, name, email'},
+							facebookConnectPlugin.api("me/friends", ["public_profile"],
 								function (me_response) {
 									alert("Success: " + me_response);
 									$rootScope.service.post('getContest', me_response, function (data) {
