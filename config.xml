@@ -18,7 +18,7 @@
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
     <platform name="android">
-		<resource-file src="google-services.json" target="google-services.json" />
+        <resource-file src="google-services.json" target="google-services.json" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
         <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
@@ -33,7 +33,7 @@
         <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
     </platform>
     <platform name="ios">
-		<resource-file src="GoogleService-Info.plist" />
+        <resource-file src="GoogleService-Info.plist" />
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />
         <icon height="114" src="resources/ios/icon/icon@2x.png" width="114" />
         <icon height="40" src="resources/ios/icon/icon-40.png" width="40" />
@@ -78,4 +78,8 @@
     <plugin name="cordova-plugin-whitelist" />
     <plugin name="cordova-plugin-admob" spec="^3.2.4" />
     <plugin name="phonegap-plugin-push" spec="^2.0.0" />
+    <plugin name="cordova-plugin-facebook4" spec="npm">
+        <variable name="APP_ID" value="1749439122016304" />
+        <variable name="APP_NAME" value="Happenspances" />
+    </plugin>
 </widget>
