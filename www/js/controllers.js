@@ -856,7 +856,7 @@ angular.module('app.controllers', [])
 			$scope.facebooklogout = function () {
 				facebookConnectPlugin.logout(function (response) {}, function (response) {}); 
 				
-			});
+			}
 			$scope.facebookLogin = function () {
 				alert("FB");
 				
