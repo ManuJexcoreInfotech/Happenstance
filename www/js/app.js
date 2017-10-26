@@ -268,6 +268,16 @@ angular.module('app', [
                             }
                         }
                     })
+                    .state('app.facebook_invitation', {
+                        cache: false,
+                        url: "/facebook_invitation",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "templates/templates/facebook_invitation.html",
+                                controller: "FacebookInviteCtrl"
+                            }
+                        }
+                    })
                     .state('app.receive_invitation', {
                         cache: false,
                         url: "/receive_invitation",

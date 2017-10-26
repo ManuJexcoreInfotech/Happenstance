@@ -851,6 +851,33 @@ angular.module('app.controllers', [])
             });
 
         })
+		.controller('FacebookInviteCtrl', function ($scope, $rootScope, $translate, $ionicHistory) {
+			$scope.fbConnection = getStorage("FB_USER_ID");
+			$scope.facebookLogin = function () {
+				alert("FB");
+				facebookConnectPlugin.login(
+					["public_profile", "email"],
+					function (response) {
+						var OAuthToken = response.authResponse.accessToken;
+						var OAuthAccessToken = response.authResponse.userID;
+						if (response.authResponse) {
+							facebookConnectPlugin.api('/me', null,
+								function (me_response) {
+									alert("Success: " + me_response);
+									forEach(me_response,, function (value, index) {
+										alert(index + value);
+									})
+									facebookConnectPlugin.logout(function (response) {}, function (response) {});                            
+								});
+						}                
+					},
+					function (response) {                
+						alert("Error: " + me_response);
+					}
+				);
+			}
+
+        })
         .controller('ReplyMessageCtrl', function ($scope, $rootScope, $state, $location, $ionicHistory, $ionicPopup) {
 
             $scope.messages = {};
