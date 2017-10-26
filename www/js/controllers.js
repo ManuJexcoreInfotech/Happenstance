@@ -872,7 +872,7 @@ angular.module('app.controllers', [])
 										console.log(value);
 										
 									})
-									//facebookConnectPlugin.logout(function (response) {}, function (response) {});                            
+									facebookConnectPlugin.logout(function (response) {}, function (response) {});                            
 								});
 						}                
 					},
