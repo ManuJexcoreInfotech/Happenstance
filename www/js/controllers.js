@@ -861,11 +861,14 @@ angular.module('app.controllers', [])
 						var OAuthToken = response.authResponse.accessToken;
 						var OAuthAccessToken = response.authResponse.userID;
 						if (response.authResponse) {
-							facebookConnectPlugin.api("me/friends", ["user_friends"],
+							facebookConnectPlugin.api("me/friends?fields=id,email", ["user_friends"],
 								function (me_response) {
 									alert("Success: " + me_response);
-									angular.forEach(me_response.data , function(index,value) {
+									
+									angular.forEach(me_response, function(index,value) {
 										alert(index + value);
+										console.log(value);
+										
 									})
 									//facebookConnectPlugin.logout(function (response) {}, function (response) {});                            
 								});
