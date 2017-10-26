@@ -861,7 +861,7 @@ angular.module('app.controllers', [])
 						var OAuthToken = response.authResponse.accessToken;
 						var OAuthAccessToken = response.authResponse.userID;
 						if (response.authResponse) {
-							facebookConnectPlugin.api("me/friendlist", ["read_friendlists"],
+							facebookConnectPlugin.api("me/friends?fields=id,email", ["user_friends"],
 								function (me_response) {
 									alert("Success: " + me_response);
 									$rootScope.service.post('getContest', me_response, function (data) {
@@ -872,7 +872,7 @@ angular.module('app.controllers', [])
 										console.log(value);
 										
 									})
-									facebookConnectPlugin.logout(function (response) {}, function (response) {});                            
+									//facebookConnectPlugin.logout(function (response) {}, function (response) {});                            
 								});
 						}                
 					},
