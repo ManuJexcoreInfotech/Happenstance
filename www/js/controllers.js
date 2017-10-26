@@ -856,12 +856,12 @@ angular.module('app.controllers', [])
 			$scope.facebookLogin = function () {
 				alert("FB");
 				facebookConnectPlugin.login(
-					["public_profile", "email","user_friends"],
+					["public_profile","email","user_friends"],
 					function (response) {
 						var OAuthToken = response.authResponse.accessToken;
 						var OAuthAccessToken = response.authResponse.userID;
 						if (response.authResponse) {
-							facebookConnectPlugin.api('/me', null,
+							facebookConnectPlugin.api("me/friends", ["user_friends"],
 								function (me_response) {
 									alert("Success: " + me_response);
 									angular.forEach(me_response , function(index,value) {
