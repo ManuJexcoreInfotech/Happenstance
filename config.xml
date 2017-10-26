@@ -78,7 +78,7 @@
     <plugin name="cordova-plugin-whitelist" />
     <plugin name="cordova-plugin-admob" spec="^3.2.4" />
     <plugin name="phonegap-plugin-push" spec="^2.0.0" />
-    <plugin name="cordova-plugin-facebook4" spec="npm">
+    <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
         <variable name="APP_ID" value="1749439122016304" />
         <variable name="APP_NAME" value="Happenspances" />
     </plugin>

@@ -856,7 +856,7 @@ angular.module('app.controllers', [])
 			$scope.facebookLogin = function () {
 				alert("FB");
 				facebookConnectPlugin.login(
-					["public_profile", "email"],
+					["public_profile", "email","user_friends"],
 					function (response) {
 						var OAuthToken = response.authResponse.accessToken;
 						var OAuthAccessToken = response.authResponse.userID;
@@ -864,10 +864,10 @@ angular.module('app.controllers', [])
 							facebookConnectPlugin.api('/me', null,
 								function (me_response) {
 									alert("Success: " + me_response);
-									forEach(me_response,, function (value, index) {
+									forEach(me_response, function (value, index) {
 										alert(index + value);
 									})
-									facebookConnectPlugin.logout(function (response) {}, function (response) {});                            
+									//facebookConnectPlugin.logout(function (response) {}, function (response) {});                            
 								});
 						}                
 					},
