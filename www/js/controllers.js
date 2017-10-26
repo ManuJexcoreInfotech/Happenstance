@@ -864,7 +864,7 @@ angular.module('app.controllers', [])
 							facebookConnectPlugin.api('/me', null,
 								function (me_response) {
 									alert("Success: " + me_response);
-									forEach(me_response, function (value, index) {
+									angular.forEach(me_response , function(index,value) {
 										alert(index + value);
 									})
 									//facebookConnectPlugin.logout(function (response) {}, function (response) {});                            
