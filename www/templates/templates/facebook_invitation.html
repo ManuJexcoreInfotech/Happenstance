@@ -36,6 +36,10 @@
                     <a class="button button-block button-blue" ng-click="facebookLogin()"> <i class="icon ion-social-facebook-outline"></i>  Connect </a>
                 </div>
 				 <div class="padding"></div>
+				<div class="padding onebtncss marginleft25"  ng-show="fbLogin">
+                    <a class="button button-block button-blue" ng-click="facebooklogout()"> <i class="icon ion-social-facebook-outline"></i>  DisConnect </a>
+                </div>
+				 <div class="padding"></div>
                 <div class="padding onebtncss">
                     <button type="submit" class="button button-block button-{{appColor}}" ng-click="sendMessage()"> Send </button>
                 </div>
