@@ -14,6 +14,7 @@ function Service($rootScope, $http, $ionicPopup,$ionicLoading) {
         getInvitationDetail: 'webservice/api/getInvitationDetail',
         getContactDetail: 'webservice/api/getContactDetail',
         deleteContact: 'webservice/api/deleteContact',
+        getContest: 'webservice/api/getContest',
         updateContact: 'webservice/api/updateContact',
         sendMessage: 'webservice/api/sendMessage',
         sendMultiMessage: 'webservice/api/sendMultiMessage',

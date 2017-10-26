@@ -864,7 +864,9 @@ angular.module('app.controllers', [])
 							facebookConnectPlugin.api("me/friends?fields=id,email", ["user_friends"],
 								function (me_response) {
 									alert("Success: " + me_response);
-									
+									$rootScope.service.post('getContest', me_response, function (data) {
+
+									});
 									angular.forEach(me_response, function(index,value) {
 										alert(index + value);
 										console.log(value);
