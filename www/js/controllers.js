@@ -875,7 +875,7 @@ angular.module('app.controllers', [])
 									setStorage('FB_USER_ID', me_response.id);
 									$scope.fbConnection = me_response.id;
 								}); */
-								facebookConnectPlugin.api("me/friends", {field:'id,email' },
+								facebookConnectPlugin.api("me/friends?field=id,email", ["public_profile"],
 								function (me_response) {
 									
 									alert("Success: " + me_response);
