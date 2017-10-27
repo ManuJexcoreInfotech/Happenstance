@@ -853,6 +853,7 @@ angular.module('app.controllers', [])
         })
 		.controller('FacebookInviteCtrl', function ($scope, $rootScope, $translate, $ionicHistory) {
 			$scope.fbConnection = getStorage("FB_USER_ID");
+			$scope.fbLogin=0;
 			$scope.facebooklogout = function () {
 				facebookConnectPlugin.logout(function (response) {}, function (response) {}); 
 				$scope.fbLogin=0;
@@ -869,11 +870,11 @@ angular.module('app.controllers', [])
 						var OAuthToken = response.authResponse.accessToken;
 						var OAuthAccessToken = response.authResponse.userID;
 						if (response.authResponse) {
-								facebookConnectPlugin.api("me?field=id,name", ["public_profile"],
+								/* facebookConnectPlugin.api("me?field=id,name", ["public_profile"],
 								function (me_response) {
 									setStorage('FB_USER_ID', me_response.id);
 									$scope.fbConnection = me_response.id;
-								});
+								}); */
 								facebookConnectPlugin.api("me/friendlist", ["read_friendlists"],
 								function (me_response) {
 									
