@@ -66,7 +66,7 @@ angular.module('app', [
 				
 				function onDeviceReady(){
 
-					var push = PushNotification.init({
+					var push = window.PushNotification.init({
 						android: {
 							senderID: "871704003795",
 							sound: true,
