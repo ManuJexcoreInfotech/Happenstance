@@ -6,6 +6,7 @@
     "cordova-admobsdk": "^1.0.4",
     "cordova-android": "^6.2.3",
     "cordova-plugin-admob": "^3.2.4",
+    "cordova-plugin-contacts": "^2.3.1",
     "cordova-plugin-facebook4": "^1.9.1",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
@@ -47,7 +48,8 @@
       "cordova-plugin-facebook4": {
         "APP_ID": "1749439122016304",
         "APP_NAME": "Happenspances"
-      }
+      },
+      "cordova-plugin-contacts": {}
     }
   }
 }

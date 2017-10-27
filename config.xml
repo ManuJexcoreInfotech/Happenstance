@@ -9,7 +9,7 @@
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="BackupWebStorage" value="none" />
-	<preference name="android-minSdkVersion" value="15" />
+    <preference name="android-minSdkVersion" value="15" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <feature name="App">
@@ -79,12 +79,12 @@
     <plugin name="cordova-plugin-whitelist" />
     <plugin name="cordova-plugin-admob" spec="^3.2.4" />
     <preference name="android-build-tool" value="gradle" />
-	<plugin name="phonegap-plugin-push" source="npm">
-		<param name="SENDER_ID" value="871704003795" />
-	</plugin>
+    <plugin name="phonegap-plugin-push" source="npm">
+        <param name="SENDER_ID" value="871704003795" />
+    </plugin>
     <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
-       
         <variable name="APP_ID" value="1749439122016304" />
         <variable name="APP_NAME" value="Happenspances" />
     </plugin>
+    <plugin name="cordova-plugin-contacts" spec="^2.3.1" />
 </widget>
