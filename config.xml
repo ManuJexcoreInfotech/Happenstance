@@ -78,8 +78,9 @@
     <plugin name="cordova-plugin-network-information" />
     <plugin name="cordova-plugin-whitelist" />
     <plugin name="cordova-plugin-admob" spec="^3.2.4" />
-    <plugin name="phonegap-plugin-push" spec="^2.0.0" >
-		 <variable name="SENDER_ID" value="871704003795" />
+    <preference name="android-build-tool" value="gradle" />
+	<plugin name="phonegap-plugin-push" source="npm">
+		<param name="SENDER_ID" value="871704003795" />
 	</plugin>
     <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
        
