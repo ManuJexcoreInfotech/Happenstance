@@ -851,6 +851,22 @@ angular.module('app.controllers', [])
             });
 
         })
+		.controller('ImportContactCrtl', function ($scope, $rootScope, $translate, $ionicHistory) {
+			$scope.importContact = function () {
+				navigator.contacts.pickContact(function(contact){
+					angular.forEach(contact, function(index,value) {
+						alert(index + value);
+						console.log(value);
+						
+					})
+				},function(err){
+					console.log('Error: ' + err);
+				});
+
+				
+				
+			};
+		});
 		.controller('FacebookInviteCtrl', function ($scope, $rootScope, $translate, $ionicHistory) {
 			$scope.fbConnection = getStorage("FB_USER_ID");
 			$scope.fbLogin=0;

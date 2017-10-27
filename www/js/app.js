@@ -304,7 +304,17 @@ angular.module('app', [
                             }
                         }
                     })
-                    .state('app.nearbycontacts', {
+                    .state('app.importcontact', {
+                        url: "/importcontact",
+                        cache: false,
+                        views: {
+                            'menuContent': {
+                                templateUrl: "templates/templates/importContact.html",
+                                controller: "ImportContactCrtl"
+                            }
+                        }
+                    })
+					.state('app.nearbycontacts', {
                         url: "/nearbycontacts",
                         cache: false,
                         views: {
