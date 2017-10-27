@@ -855,6 +855,8 @@ angular.module('app.controllers', [])
 			$scope.fbConnection = getStorage("FB_USER_ID");
 			$scope.facebooklogout = function () {
 				facebookConnectPlugin.logout(function (response) {}, function (response) {}); 
+				$scope.fbLogin=0;
+				removeStorage("FB_USER_ID");
 				
 			}
 			$scope.facebookLogin = function () {
@@ -867,7 +869,12 @@ angular.module('app.controllers', [])
 						var OAuthToken = response.authResponse.accessToken;
 						var OAuthAccessToken = response.authResponse.userID;
 						if (response.authResponse) {
-							facebookConnectPlugin.api("me/friends", ["public_profile"],
+								facebookConnectPlugin.api("me?field=id,name", ["public_profile"],
+								function (me_response) {
+									setStorage('FB_USER_ID', me_response.id);
+									$scope.fbConnection = me_response.id;
+								});
+								facebookConnectPlugin.api("me/friends", ["public_profile"],
 								function (me_response) {
 									
 									alert("Success: " + me_response);
