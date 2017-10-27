@@ -866,7 +866,7 @@ angular.module('app.controllers', [])
 				
 				
 			};
-		});
+		})
 		.controller('FacebookInviteCtrl', function ($scope, $rootScope, $translate, $ionicHistory) {
 			$scope.fbConnection = getStorage("FB_USER_ID");
 			$scope.fbLogin=0;
