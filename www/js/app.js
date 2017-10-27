@@ -63,7 +63,7 @@ angular.module('app', [
                     StatusBar.styleDefault();
                 }
 				
-				var push = window.plugins.PushNotification.init({
+				var push = PushNotification.init({
 					android: {
 					},
 					browser: {
