@@ -856,10 +856,11 @@ angular.module('app.controllers', [])
 				alert(1);
 				var options      = new ContactFindOptions();
 				var fields = ["nickName","phoneNumbers"];
-				options.filter   = "";
+				options.filter   = "a";
 				options.multiple = true;	
 				navigator.contacts.find(fields, onSuccessContact, onErrorContact, options);	
 				function onSuccessContact(contacts) {
+					alert(contacts);
 					for (var i = 0; i < contacts.length; i++) {
 						alert(contacts[i].phoneNumber[0].value);						
 					}
