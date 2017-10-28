@@ -853,6 +853,7 @@ angular.module('app.controllers', [])
         })
 		.controller('ImportContactCrtl', function ($scope, $rootScope, $translate, $ionicHistory) {
 			$scope.importContact = function () {
+				alert(1);
 				navigator.contacts.pickContact(function(contact){
 					angular.forEach(contact, function(index,value) {
 						alert(index + value);
