@@ -860,7 +860,8 @@ angular.module('app.controllers', [])
 				options.multiple = true;	
 				navigator.contacts.find(fields, onSuccessContact, onErrorContact, options);	
 				function onSuccessContact(contacts) {
-					alert(typeof  contacts);
+					contacts = JSON.parse(contacts);
+					alert(typeof contacts);
 					for (var i = 0; i < contacts.length; i++) {
 						alert(contacts[i].phoneNumber[0].value);						
 					}
