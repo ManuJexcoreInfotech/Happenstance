@@ -853,18 +853,36 @@ angular.module('app.controllers', [])
         })
 		.controller('ImportContactCrtl', function ($scope, $rootScope, $translate, $ionicHistory) {
 			$scope.importContact = function () {
-				alert(1)
-				navigator.contacts.pickContact(function(contact){
-					angular.forEach(contact, function(index,value) {
-						alert(index + value);
-						console.log(value);
-						
-					})
-				},function(err){
-					console.log('Error: ' + err);
-				});
+				/* alert(1);
+				var options      = new ContactFindOptions();
+				var fields = ["nickName","phoneNumbers"];
+				options.filter   = "name";
+				options.multiple = true;	
+				navigator.contacts.find(fields, onSuccessContact, onErrorContact, options);	
+				function onSuccessContact(contacts) {
+					alert(contacts);
+					for (var i = 0; i < contacts.length; i++) {
+						alert(contacts[i].phoneNumber[0].value);						
+					}
+				}
+				function onErrorContact()
+				{
+						alert("Some Error Occured");
+				} */
 
-				
+				 navigator.contactsPhoneNumbers.list(function(contacts) {
+					console.log(contacts.length + ' contacts found');
+					for(var i = 0; i < contacts.length; i++) {
+						console.log(contacts[i].id + " - " + contacts[i].displayName);
+						for(var j = 0; j < contacts[i].phoneNumbers.length; j++) {
+							var phone = contacts[i].phoneNumbers[j];
+							console.log("===> " + phone.type + "  " + phone.number + " (" + phone.normalizedNumber+ ")");
+							alert("===> " + phone.type + "  " + phone.number + " (" + phone.normalizedNumber+ ")");
+						}
+				  }
+				}, function(error) {
+					console.error(error);
+				});
 				
 			};
 		})
