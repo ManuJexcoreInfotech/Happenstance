@@ -11,30 +11,7 @@ angular.module('app', [
 
         .run(function ($ionicPlatform, $rootScope, $http, $ionicPopup, $ionicHistory, $cordovaDevice) {
             $ionicPlatform.ready(function ()
-            {
-					function onSuccess(contacts) {
-						for (var i = 0; i < contacts.length; i++) {
-							for (var j = 0; j < contacts[i].organizations.length; j++) {
-								alert("Pref: "      + contacts[i].organizations[j].pref       + "\n" +
-									"Type: "        + contacts[i].organizations[j].type       + "\n" +
-									"Name: "        + contacts[i].organizations[j].name       + "\n" +
-									"Department: "  + contacts[i].organizations[j].department + "\n" +
-									"Title: "       + contacts[i].organizations[j].title);
-							}
-						}
-					};
-
-					function onError(contactError) {
-						alert('onError!');
-					};
-
-					var options = new ContactFindOptions();
-					options.filter = ["displayName", "organizations"];;
-					options.multiple = true;
-					filter = ["displayName", "organizations"];
-					navigator.contacts.find(filter, onSuccess, onError, options);
-
-				
+            {	
 					window.plugins.AdMob.setOptions({
 					  publisherId: "ca-app-pub-7844737046957946/9216355879",
 					  interstitialAdId: "ca-app-pub-7844737046957946/5278703180",

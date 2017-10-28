@@ -853,22 +853,16 @@ angular.module('app.controllers', [])
         })
 		.controller('ImportContactCrtl', function ($scope, $rootScope, $translate, $ionicHistory) {
 			$scope.importContact = function () {
-				alert(1);
-				var options      = new ContactFindOptions();
-				var fields = ["nickName","phoneNumbers"];
-				options.filter   = "name";
-				options.multiple = true;	
-				navigator.contacts.find(fields, onSuccessContact, onErrorContact, options);	
-				function onSuccessContact(contacts) {
-					alert(contacts);
-					for (var i = 0; i < contacts.length; i++) {
-						alert(contacts[i].phoneNumber[0].value);						
-					}
-				}
-				function onErrorContact()
-				{
-						alert("Some Error Occured");
-				}
+				alert(1)
+				navigator.contacts.pickContact(function(contact){
+					angular.forEach(contact, function(index,value) {
+						alert(index + value);
+						console.log(value);
+						
+					})
+				},function(err){
+					console.log('Error: ' + err);
+				});
 
 				
 				
