@@ -854,17 +854,20 @@ angular.module('app.controllers', [])
 		.controller('ImportContactCrtl', function ($scope, $rootScope, $translate, $ionicHistory) {
 			$scope.importContact = function () {
 				alert(1);
-				navigator.contacts.pickContact(function(contact){
-					alert(contact);
-					$scope.contacts  = JSON.stringify(contact);
-					angular.forEach($scope.contacts, function(index,value) {
-						alert(index + value);
-						console.log(value);
-						
-					})
-				},function(err){
-					console.log('Error: ' + err);
-				});
+				var options      = new ContactFindOptions();
+				var fields = ["nickName","phoneNumbers"];
+				options.filter   = "";
+				options.multiple = true;	
+				navigator.contacts.find(fields, onSuccessContact, onErrorContact, options);	
+				function onSuccessContact(contacts) {
+					for (var i = 0; i < contacts.length; i++) {
+						alert(contacts[i].phoneNumber[0].value);						
+					}
+				}
+				function onErrorContact()
+				{
+						alert("Some Error Occured");
+				}
 
 				
 				
