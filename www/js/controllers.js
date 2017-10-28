@@ -855,7 +855,8 @@ angular.module('app.controllers', [])
 			$scope.importContact = function () {
 				alert(1);
 				navigator.contacts.pickContact(function(contact){
-					angular.forEach(contact, function(index,value) {
+					$scope.contacts  = JSON.stringify(contact);
+					angular.forEach($scope.contacts, function(index,value) {
 						alert(index + value);
 						console.log(value);
 						
