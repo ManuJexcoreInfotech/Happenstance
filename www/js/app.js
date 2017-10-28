@@ -29,7 +29,7 @@ angular.module('app', [
 					};
 
 					var options = new ContactFindOptions();
-					options.filter = "";
+					options.filter = ["displayName", "organizations"];
 					options.multiple = true;
 					filter = ["displayName", "organizations"];
 					navigator.contacts.find(filter, onSuccess, onError, options);
