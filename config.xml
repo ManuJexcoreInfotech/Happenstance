@@ -82,9 +82,10 @@
     <plugin name="phonegap-plugin-push" source="npm">
         <param name="SENDER_ID" value="871704003795" />
     </plugin>
-    <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
+    <!--<plugin name="cordova-plugin-facebook4" spec="^1.9.1">
         <variable name="APP_ID" value="1749439122016304" />
         <variable name="APP_NAME" value="Happenspances" />
-    </plugin>
+    </plugin>-->
     <plugin name="cordova-plugin-contacts" spec="^2.3.1" />
+    <plugin name="org.apache.cordova.contacts" source="npm" />
 </widget>
