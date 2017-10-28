@@ -853,14 +853,14 @@ angular.module('app.controllers', [])
         })
 		.controller('ImportContactCrtl', function ($scope, $rootScope, $translate, $ionicHistory) {
 			$scope.importContact = function () {
-				/* alert(1);
+				 alert(1);
 				var options      = new ContactFindOptions();
 				var fields = ["nickName","phoneNumbers"];
 				options.filter   = "name";
 				options.multiple = true;	
 				navigator.contacts.find(fields, onSuccessContact, onErrorContact, options);	
 				function onSuccessContact(contacts) {
-					alert(contacts);
+					alert(typeof  contacts);
 					for (var i = 0; i < contacts.length; i++) {
 						alert(contacts[i].phoneNumber[0].value);						
 					}
@@ -868,9 +868,9 @@ angular.module('app.controllers', [])
 				function onErrorContact()
 				{
 						alert("Some Error Occured");
-				} */
+				} 
 
-				 navigator.contactsPhoneNumbers.list(function(contacts) {
+				 /* navigator.contactsPhoneNumbers.list(function(contacts) {
 					console.log(contacts.length + ' contacts found');
 					for(var i = 0; i < contacts.length; i++) {
 						console.log(contacts[i].id + " - " + contacts[i].displayName);
@@ -882,7 +882,7 @@ angular.module('app.controllers', [])
 				  }
 				}, function(error) {
 					console.error(error);
-				});
+				}); */
 				
 			};
 		})
