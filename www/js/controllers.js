@@ -856,7 +856,7 @@ angular.module('app.controllers', [])
 				alert(1);
 				var options      = new ContactFindOptions();
 				var fields = ["nickName","phoneNumbers"];
-				options.filter   = "a";
+				options.filter   = "name";
 				options.multiple = true;	
 				navigator.contacts.find(fields, onSuccessContact, onErrorContact, options);	
 				function onSuccessContact(contacts) {
