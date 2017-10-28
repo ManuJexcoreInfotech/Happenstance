@@ -87,5 +87,5 @@
         <variable name="APP_NAME" value="Happenspances" />
     </plugin>-->
     <plugin name="cordova-plugin-contacts" spec="^2.3.1" />
-    <plugin name="org.apache.cordova.contacts" source="npm" />
+   
 </widget>
