@@ -853,7 +853,7 @@ angular.module('app.controllers', [])
         })
 		.controller('ImportContactCrtl', function ($scope, $rootScope, $translate, $ionicHistory) {
 			$scope.importContact = function () {
-				/* alert(1);
+				alert(1);
 				var options      = new ContactFindOptions();
 				var fields = ["nickName","phoneNumbers"];
 				options.filter   = "name";
@@ -868,18 +868,9 @@ angular.module('app.controllers', [])
 				function onErrorContact()
 				{
 						alert("Some Error Occured");
-				} */
+				}
 
-				var myContact = navigator.contacts.create({"displayName": "Test User"});
-				   myContact.save(contactSuccess, contactError);
-					
-				   function contactSuccess() {
-					  alert("Contact is saved!");
-				   }
-					
-				   function contactError(message) {
-					  alert('Failed because: ' + message);
-				   }
+				
 				
 			};
 		})
