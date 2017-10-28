@@ -73,6 +73,7 @@
     <preference name="xwalkMode" value="embedded" />
     <engine name="android" spec="^6.2.3" />
     <plugin name="cordova-plugin-device" />
+    <plugin name="cordova-plugin-media" />
     <plugin name="cordova-plugin-geolocation" />
     <plugin name="cordova-plugin-inappbrowser" />
     <plugin name="cordova-plugin-network-information" />
