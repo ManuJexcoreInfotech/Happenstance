@@ -84,5 +84,5 @@
         <param name="SENDER_ID" value="871704003795" />
     </plugin>
     <plugin name="cordova-plugin-contacts" spec="^2.3.1" />
-    <plugin name="com.dbaq.cordova.contactsPhoneNumbers" spec="~0.0.9" />
+    <plugin name="cordova-plugin-contacts-phonenumbers" source="npm" />
 </widget>
