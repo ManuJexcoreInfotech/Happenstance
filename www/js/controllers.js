@@ -872,7 +872,7 @@ angular.module('app.controllers', [])
 				$scope.createContact = function() {
 					$cordovaContacts.save({"displayName": "Steve Jobs"}).then(function(result) {
 						console.log(JSON.stringify(result));
-						alert("JSON.stringify(result)")
+						alert(JSON.stringify(result));
 					}, function(error) {
 						console.log(error);
 					});
