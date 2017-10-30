@@ -852,17 +852,9 @@ angular.module('app.controllers', [])
 
         })
 		.controller('ImportContactCrtl', function ($scope, $rootScope, $translate, $ionicHistory,$cordovaContacts) {
-			$scope.importContact = function () {
-				 alert(1);
-				 
-				$cordovaContacts.find().then(function(allContacts) { //omitting parameter to .find() causes all contacts to be returned
-				  $scope.contacts = allContacts;
-				  console.log(contacts)
-				  for (var i = 0; i < $scope.contacts.length; i++) {
-						alert($scope.contacts[i].phoneNumber[0].value);						
-					}
-				});
-				$scope.getContactList = function() {
+			
+			
+			$scope.getContactList = function() {
 					alert(2)
 					$cordovaContacts.find({filter: ''}).then(function(result) {
 						$scope.contacts = result;
@@ -879,6 +871,17 @@ angular.module('app.controllers', [])
 						console.log(error);
 					});
 				}
+			$scope.importContact = function () {
+				 alert(1);
+				 
+				$cordovaContacts.find().then(function(allContacts) { //omitting parameter to .find() causes all contacts to be returned
+				  $scope.contacts = allContacts;
+				  console.log(contacts)
+				  for (var i = 0; i < $scope.contacts.length; i++) {
+						alert($scope.contacts[i].phoneNumber[0].value);						
+					}
+				});
+				
 				/* var options      = new ContactFindOptions();
 				var fields = ["nickName","phoneNumbers"];
 				options.filter   = "name";
