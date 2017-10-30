@@ -3,9 +3,7 @@
         <img class="title-image" src="img/logo.png" />
     </ion-nav-title>
     <ion-content padding="10">
-			<button class="button" ng-click="getContactList()">Load</button>
-            <h1 class="title">Ionic Blank Starter</h1>
-            <button class="button" ng-click="createContact()">New</button>
+			
             <form method="post" class="invtform" ng-submit="" name="postForm" novalidate>
                 <!--ng-repeat="item in items"--> 
                 <ion-list >
@@ -14,7 +12,7 @@
 					</ion-item>
 				</ion-list>
 				<div class="padding"  ng-show="!fbConnection">
-                    <a class="button button-block button-dark" ng-click="importContact()"> <i class="icon ion-archive"></i>  Import Contact </a>
+                    <a class="button button-block button-dark" ng-click="getContactList()" ng-hide="contacts.length > 0"> <i class="icon ion-archive"></i>  Import Contact </a>
                 </div>
 				 <div class="padding"></div>
 				

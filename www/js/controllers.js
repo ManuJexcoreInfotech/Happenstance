@@ -854,23 +854,18 @@ angular.module('app.controllers', [])
 		.controller('ImportContactCrtl', function ($scope, $rootScope, $translate, $ionicHistory,$cordovaContacts) {
 			
 			
-			$scope.getContactList = function() {
-					alert(2)
+				$scope.getContactList = function() {					
 					$cordovaContacts.find({filter: ''}).then(function(result) {
 						$scope.contacts = result;
+						angular.forEach($scope.contacts, function(index,value) {
+							alert("index=> "+index+" => value : "+value)
+						});
+						
 					}, function(error) {
 						console.log("ERROR: " + error);
 					});
 				}
-				$scope.createContact = function() {
-					alert(11)
-					$cordovaContacts.save({"displayName": "Steve Jobs"}).then(function(result) {
-						console.log(JSON.stringify(result));
-						alert(JSON.stringify(result));
-					}, function(error) {
-						console.log(error);
-					});
-				}
+				
 			$scope.importContact = function () {
 				 alert(1);
 				 
