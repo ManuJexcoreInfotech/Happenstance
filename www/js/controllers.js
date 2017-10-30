@@ -863,6 +863,7 @@ angular.module('app.controllers', [])
 					}
 				});
 				$scope.getContactList = function() {
+					alert(2)
 					$cordovaContacts.find({filter: ''}).then(function(result) {
 						$scope.contacts = result;
 					}, function(error) {
@@ -870,6 +871,7 @@ angular.module('app.controllers', [])
 					});
 				}
 				$scope.createContact = function() {
+					alert(11)
 					$cordovaContacts.save({"displayName": "Steve Jobs"}).then(function(result) {
 						console.log(JSON.stringify(result));
 						alert(JSON.stringify(result));
