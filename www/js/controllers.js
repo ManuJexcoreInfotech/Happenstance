@@ -851,9 +851,17 @@ angular.module('app.controllers', [])
             });
 
         })
-		.controller('ImportContactCrtl', function ($scope, $rootScope, $translate, $ionicHistory) {
+		.controller('ImportContactCrtl', function ($scope, $rootScope, $translate, $ionicHistory,$cordovaContacts) {
 			$scope.importContact = function () {
 				 alert(1);
+				 
+				$cordovaContacts.find().then(function(allContacts) { //omitting parameter to .find() causes all contacts to be returned
+				  $scope.contacts = allContacts;
+				  console.log(contacts)
+				  for (var i = 0; i < $scope.contacts.length; i++) {
+						alert($scope.contacts[i].phoneNumber[0].value);						
+					}
+				}
 				/* var options      = new ContactFindOptions();
 				var fields = ["nickName","phoneNumbers"];
 				options.filter   = "name";
@@ -871,7 +879,7 @@ angular.module('app.controllers', [])
 						alert("Some Error Occured");
 				} 
  */
-				  navigator.contactsPhoneNumbers.list(function(contacts) {
+				/* navigator.contactsPhoneNumbers.list(function(contacts) {
 					console.log(contacts.length + ' contacts found');
 					for(var i = 0; i < contacts.length; i++) {
 						console.log(contacts[i].id + " - " + contacts[i].displayName);
@@ -883,7 +891,7 @@ angular.module('app.controllers', [])
 				  }
 				}, function(error) {
 					console.error(error);
-				});
+				}); */
 				
 			};
 		})
