@@ -10,10 +10,10 @@
 					<ion-item ng-repeat="contact in contacts">
 						{{contact.displayName}}
 						<p ng-repeat="number in contact.phoneNumbers">
-							{{number}}
+							{{number.type}}:{{number.value}}
 						</p>
 						<p ng-repeat="email in contact.emails">
-							{{email}}
+							{{email.type}}:{{email.value}}
 						</p>
 					</ion-item>
 				</ion-list>
