@@ -861,7 +861,7 @@ angular.module('app.controllers', [])
 				  for (var i = 0; i < $scope.contacts.length; i++) {
 						alert($scope.contacts[i].phoneNumber[0].value);						
 					}
-				}
+				});
 				/* var options      = new ContactFindOptions();
 				var fields = ["nickName","phoneNumbers"];
 				options.filter   = "name";
