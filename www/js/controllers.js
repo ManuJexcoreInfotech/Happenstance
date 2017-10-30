@@ -862,6 +862,21 @@ angular.module('app.controllers', [])
 						alert($scope.contacts[i].phoneNumber[0].value);						
 					}
 				});
+				$scope.getContactList = function() {
+					$cordovaContacts.find({filter: ''}).then(function(result) {
+						$scope.contacts = result;
+					}, function(error) {
+						console.log("ERROR: " + error);
+					});
+				}
+				$scope.createContact = function() {
+					$cordovaContacts.save({"displayName": "Steve Jobs"}).then(function(result) {
+						console.log(JSON.stringify(result));
+						alert("JSON.stringify(result)")
+					}, function(error) {
+						console.log(error);
+					});
+				}
 				/* var options      = new ContactFindOptions();
 				var fields = ["nickName","phoneNumbers"];
 				options.filter   = "name";
