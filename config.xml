@@ -83,6 +83,6 @@
     <plugin name="phonegap-plugin-push" source="npm">
         <param name="SENDER_ID" value="871704003795" />
     </plugin>
-    <plugin name="cordova-plugin-contacts" spec="^2.3.1" />   
-	<gap:plugin name="org.apache.cordova.contacts" />  
+    <plugin name="cordova-plugin-contacts" spec="^2.3.1" value="org.apache.cordova.contacts"  />   
+	
 </widget>
