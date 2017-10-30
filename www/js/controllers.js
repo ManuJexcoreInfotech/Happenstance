@@ -856,10 +856,7 @@ angular.module('app.controllers', [])
 			
 				$scope.getContactList = function() {					
 					$cordovaContacts.find({filter: ''}).then(function(result) {
-						$scope.contacts = result;
-						angular.forEach($scope.contacts, function(index,value) {
-							alert("index=> "+index+" => value : "+value)
-						});
+						$scope.contacts = result;						
 						
 					}, function(error) {
 						console.log("ERROR: " + error);

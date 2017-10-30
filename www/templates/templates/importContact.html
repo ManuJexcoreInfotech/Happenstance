@@ -9,6 +9,12 @@
                 <ion-list >
 					<ion-item ng-repeat="contact in contacts">
 						{{contact.displayName}}
+						<p ng-repeat="number in contact.phoneNumbers">
+							{{number}}
+						</p>
+						<p ng-repeat="email in contact.emails">
+							{{email}}
+						</p>
 					</ion-item>
 				</ion-list>
 				<div class="padding"  ng-show="!fbConnection">
