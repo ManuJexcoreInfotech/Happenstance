@@ -9,32 +9,35 @@ angular.module('app', [
     'app.controllers', 'app.filters', 'ionicLazyLoad', 'slickCarousel'
 ])
 
-        .run(function ($ionicPlatform, $rootScope, $http, $ionicPopup, $ionicHistory, $cordovaDevice) {
+        .run(function ($ionicPlatform, $rootScope, $http, $ionicPopup, $ionicHistory, $cordovaDevice, $cordovaSplashscreen) {
+
+
             $ionicPlatform.ready(function ()
-            {	
-					window.plugins.AdMob.setOptions({
-					  publisherId: "ca-app-pub-7844737046957946/9216355879",
-					  interstitialAdId: "ca-app-pub-7844737046957946/5278703180",
-					  bannerAtTop: false, // set to true, to put banner at top
-					  overlap: false, // set to true, to allow banner overlap webview
-					  offsetTopBar: false, // set to true to avoid ios7 status bar overlap
-					  isTesting: false, // receiving test ad
-					  autoShow: true // auto show interstitial ad when loaded
-					});
-					// display the banner at startup
-					window.plugins.AdMob.createBannerView();
-					
-					// create interstitial ad
-					window.plugins.AdMob.createInterstitialView();
-					window.plugins.AdMob.showInterstitialAd(
-					  true, 
-					  function(){},
-					  function(e){//alert(JSON.stringify(e));
-					  }
-					);
-				
-				
-				
+            {
+
+                window.plugins.AdMob.setOptions({
+                    publisherId: "ca-app-pub-7844737046957946/9216355879",
+                    interstitialAdId: "ca-app-pub-7844737046957946/5278703180",
+                    bannerAtTop: false, // set to true, to put banner at top
+                    overlap: false, // set to true, to allow banner overlap webview
+                    offsetTopBar: false, // set to true to avoid ios7 status bar overlap
+                    isTesting: false, // receiving test ad
+                    autoShow: true // auto show interstitial ad when loaded
+                });
+                // display the banner at startup
+                window.plugins.AdMob.createBannerView();
+
+                // create interstitial ad
+                window.plugins.AdMob.createInterstitialView();
+                window.plugins.AdMob.showInterstitialAd(
+                        true,
+                        function () {},
+                        function (e) {//alert(JSON.stringify(e));
+                        }
+                );
+
+
+
                 $rootScope.$apply(function () {
 
                     var device = $cordovaDevice.getDevice();
@@ -51,7 +54,7 @@ angular.module('app', [
                         //console.log(res)
                     });
                 });
-                
+
 
                 // Hide the accessory bar by default
 //                if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -61,43 +64,6 @@ angular.module('app', [
                     // org.apache.cordova.statusbar required
                     StatusBar.styleDefault();
                 }
-				onDeviceReady();
-				
-				function onDeviceReady(){
-
-					var push = window.PushNotification.init({
-						android: {
-							senderID: "871704003795",
-							sound: true,
-							vibrate: true
-						},
-						browser: {},
-						ios: {
-							alert: "true",
-							badge: "true",
-							sound: "true"
-						},
-						windows: {}
-					});
-
-					push.on('registration', function(data) {
-						//data.registrationId;
-					}); 
-
-					push.on('notification', function(data) {
-						// data.message,
-						// data.title,
-						// data.count,
-						// data.sound,
-						// data.image,
-						// data.additionalData
-					   
-					});
-
-					push.on('error', function(e) {
-						// e.message
-					});
-				   }		
             });
             $rootScope.backHome = function () {
 
@@ -273,16 +239,6 @@ angular.module('app', [
                             }
                         }
                     })
-                    .state('app.facebook_invitation', {
-                        cache: false,
-                        url: "/facebook_invitation",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "templates/templates/facebook_invitation.html",
-                                controller: "FacebookInviteCtrl"
-                            }
-                        }
-                    })
                     .state('app.receive_invitation', {
                         cache: false,
                         url: "/receive_invitation",
@@ -303,23 +259,23 @@ angular.module('app', [
                             }
                         }
                     })
-                    .state('app.importcontact', {
-                        url: "/importcontact",
-                        cache: false,
-                        views: {
-                            'menuContent': {
-                                templateUrl: "templates/templates/importContact.html",
-                                controller: "ImportContactCrtl"
-                            }
-                        }
-                    })
-					.state('app.nearbycontacts', {
+                    .state('app.nearbycontacts', {
                         url: "/nearbycontacts",
                         cache: false,
                         views: {
                             'menuContent': {
                                 templateUrl: "templates/templates/nearbycontacts.html",
                                 controller: "NearByContactCrtl"
+                            }
+                        }
+                    })
+					.state('app.importcontact', {
+                        url: "/importcontact",
+                        cache: false,
+                        views: {
+                            'menuContent': {
+                                templateUrl: "templates/templates/importContact.html",
+                                controller: "ImportContactCrtl"
                             }
                         }
                     })
@@ -344,7 +300,7 @@ angular.module('app', [
                         }
                     })
                     .state('app.reply_message', {
-                        url: "/reply_message",
+                        url: "/reply_message?msg_id=",
                         cache: false,
                         views: {
                             'menuContent': {

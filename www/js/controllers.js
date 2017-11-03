@@ -36,7 +36,7 @@ angular.module('app.controllers', [])
                         });
 
                     }, function (err) {
-                        
+
                         console.log(err);
                     });
 
@@ -473,8 +473,9 @@ angular.module('app.controllers', [])
             }
         })
 //Near By Contacts
-        .controller('NearByContactCrtl', function ($scope, $rootScope, $state, $stateParams, $ionicPopup,$timeout ) {
+        .controller('NearByContactCrtl', function ($scope, $rootScope, $state, $stateParams, $ionicPopup, $timeout) {
             $scope.data = {};
+            $scope.rows = 0;
             var UserId = getStorage('user_id');
             $scope.data.u_id = UserId;
             $scope.user = {};
@@ -484,8 +485,14 @@ angular.module('app.controllers', [])
             $rootScope.service.post('getNearByContact', $scope.data, function (res) {
                 $scope.hideLoading();
                 $scope.contacts = angular.fromJson(res.result);
+                angular.forEach($scope.contacts, function (value, key) {
+                    if (value.inv_five != 0 || value.inv_ten != 0 || value.inv_fifteen != 0)
+                    {
+                        $scope.rows++;
+                    }
+                });
             });
-            
+
             $scope.sendMessage = function () {
 
                 $scope.data.sender_u_id = $scope.data.u_id;
@@ -510,7 +517,7 @@ angular.module('app.controllers', [])
                                 } else {
 
                                     $scope.showLoading();
-                                    $timeout($scope.hideLoading(), 3000);                            
+                                    $timeout($scope.hideLoading(), 3000);
                                     $rootScope.service.post('sendMultiMessage', $scope.data, function (res) {
                                         $scope.hideLoading();
 
@@ -532,8 +539,8 @@ angular.module('app.controllers', [])
                 });
 
             };
-            
-            
+
+
 
         })
 //Contact Controller
@@ -842,119 +849,30 @@ angular.module('app.controllers', [])
 
 
         .controller('messageCtrl', function ($scope, $rootScope, $translate, $ionicHistory) {
-
+            var userId = getStorage("user_id");
             $scope.messages = {};
+            $scope.showLoading();
+            setTimeout(function () {
+                $scope.hideLoading();
+            }, 5000);
             $scope.sessionData.u_id = getStorage('user_id');
             $rootScope.service.post('getMessageList', $scope.sessionData, function (data) {
+                $scope.hideLoading();
                 $scope.messages = typeof data.result === 'object' ? data.result : null;
 
             });
+            $scope.getFavClassIcon = function (Rec_id, status, total) {
+                if (status == 1 && Rec_id == userId) {
+                    return 'unread';
+                }
+                if (total > 0) {
+                    return 'unread';
+                }
+                return 'read';
+            };
 
         })
-		.controller('ImportContactCrtl', function ($scope, $rootScope, $translate, $ionicHistory,$cordovaContacts) {
-			
-			
-				$scope.getContactList = function() {					
-					$cordovaContacts.find({filter: ''}).then(function(result) {
-						$scope.contacts = result;						
-						
-					}, function(error) {
-						console.log("ERROR: " + error);
-					});
-				}
-				
-			$scope.importContact = function () {
-				 alert(1);
-				 
-				$cordovaContacts.find().then(function(allContacts) { //omitting parameter to .find() causes all contacts to be returned
-				  $scope.contacts = allContacts;
-				  console.log(contacts)
-				  for (var i = 0; i < $scope.contacts.length; i++) {
-						alert($scope.contacts[i].phoneNumber[0].value);						
-					}
-				});
-				
-				/* var options      = new ContactFindOptions();
-				var fields = ["nickName","phoneNumbers"];
-				options.filter   = "name";
-				options.multiple = true;	
-				navigator.contacts.find(fields, onSuccessContact, onErrorContact, options);	
-				function onSuccessContact(contacts) {
-					contacts =
-					alert(typeof contacts);
-					for (var i = 0; i < contacts.length; i++) {
-						alert(contacts[i].phoneNumber[0].value);						
-					}
-				}
-				function onErrorContact()
-				{
-						alert("Some Error Occured");
-				} 
- */
-				/* navigator.contactsPhoneNumbers.list(function(contacts) {
-					console.log(contacts.length + ' contacts found');
-					for(var i = 0; i < contacts.length; i++) {
-						console.log(contacts[i].id + " - " + contacts[i].displayName);
-						for(var j = 0; j < contacts[i].phoneNumbers.length; j++) {
-							var phone = contacts[i].phoneNumbers[j];
-							console.log("===> " + phone.type + "  " + phone.number + " (" + phone.normalizedNumber+ ")");
-							alert("===> " + phone.type + "  " + phone.number + " (" + phone.normalizedNumber+ ")");
-						}
-				  }
-				}, function(error) {
-					console.error(error);
-				}); */
-				
-			};
-		})
-		.controller('FacebookInviteCtrl', function ($scope, $rootScope, $translate, $ionicHistory) {
-			$scope.fbConnection = getStorage("FB_USER_ID");
-			$scope.fbLogin=0;
-			$scope.facebooklogout = function () {
-				facebookConnectPlugin.logout(function (response) {}, function (response) {}); 
-				$scope.fbLogin=0;
-				removeStorage("FB_USER_ID");
-				
-			}
-			$scope.facebookLogin = function () {
-				alert("FB");
-				
-				facebookConnectPlugin.login(
-					["public_profile","email","user_friends"],
-					function (response) {
-						$scope.fbLogin=1;
-						var OAuthToken = response.authResponse.accessToken;
-						var OAuthAccessToken = response.authResponse.userID;
-						if (response.authResponse) {
-								/* facebookConnectPlugin.api("me?field=id,name", ["public_profile"],
-								function (me_response) {
-									setStorage('FB_USER_ID', me_response.id);
-									$scope.fbConnection = me_response.id;
-								}); */
-								facebookConnectPlugin.api("me/friends?field=id,email", ["public_profile","email"],
-								function (me_response) {
-									
-									alert("Success: " + me_response);
-									$rootScope.service.post('getContest', me_response, function (data) {
-
-									});
-									angular.forEach(me_response, function(index,value) {
-										alert(index + value);
-										console.log(value);
-										
-									})
-									//                           
-								});
-						}                
-					},
-					function (response) {                
-						alert("Error: " + me_response);
-					}
-				);
-			}
-
-        })
-        .controller('ReplyMessageCtrl', function ($scope, $rootScope, $state, $location, $ionicHistory, $ionicPopup) {
+        .controller('ReplyMessageCtrl', function ($scope, $rootScope, $state, $location, $stateParams, $ionicPopup) {
 
             $scope.messages = {};
             $scope.data = {};
@@ -994,7 +912,8 @@ angular.module('app.controllers', [])
                                         $scope.hideLoading();
                                         if (res.status == 1) {
                                             alert(res.message);
-                                            $state.reload();
+                                            myPopup.close();
+                                            $state.go("app.reply_message", {msg_id: $scope.data.m_ref_id}, {reload: true});
                                         } else {
                                             $scope.valid = 0;
                                             alert(res.message);
@@ -1015,11 +934,139 @@ angular.module('app.controllers', [])
 
         })
 
+        .controller('ImportContactCrtl', function ($scope, $rootScope, $ionicPopup, $ionicHistory, $cordovaContacts) {
+
+            $scope.email = [];
+            $scope.groups = [];
+            $scope.contacts = [];
+            $scope.user = {};
+            $scope.user.u_id = getStorage('user_id');
+            $rootScope.service.post('groupList', $scope.user, function (res) {
+                $scope.groups = res.result;
+            });
+
+//            $scope.contacts = [{"displayName": "Test", "emails": [{value: "test@gmail.com"}, {value: "fadg@gmail.com"}]}, {"displayName": "Kalpesh", "emails": [{value: "test1@gmail.com"}, {value: "fadg@gmail.com"}]}, {"displayName": "Manishl", "emails": [{value: "test1@gmail.com"}, {value: "fadg1@gmail.com"}]}];
+            $scope.getContactList = function () {
+                $scope.showLoading();
+                setTimeout(function () {
+                    $scope.hideLoading();
+                }, 2000);
+                $cordovaContacts.find({filter: ''}).then(function (result) {
+                    $scope.contacts = result;
+                }, function (error) {
+                    console.log("ERROR: " + error);
+                });
+            }
+            $scope.user.name = [];
+            $scope.contact = [];
+//            $scope.user.search = 'M';
+//            angular.forEach($scope.contacts, function (index, value) {
+//                if (index.displayName.indexOf($scope.user.search) == 0) {
+//                    $scope.contact.push(index);
+//                    value = $scope.contact.length - 1;
+//                    $scope.email[value] = index.emails[0].value;
+//                    $scope.user.name[value] = index.displayName;
+//                }
+//            });
+            
+            $scope.required = 0;
+            $scope.submitForm = function (isValid) {
+                $scope.required = 0;
+                if (isValid) {
+                    // alert($scope.user.search);
+                    var opts = {//search options
+                        filter: $scope.user.search, // 'Bob'
+                        multiple: false, // Yes, return any contact that matches criteria
+                        fields: ['displayName', 'name'] // These are the fields to search for 'bob'.
+                                //desiredFields: ['emails'] //return fields.
+                    };
+                    $scope.showLoading();
+                    setTimeout(function () {
+                        $scope.hideLoading();
+                    }, 2000);
+                    $cordovaContacts.find(opts).then(function (contactsFound) {
+                        $scope.contacts = contactsFound;
+                        angular.forEach( $scope.contacts , function (index, value) {
+//                            if (index.displayName.indexOf($scope.user.search) > -1) {
+                                $scope.email[value] = index.emails[0].value;
+                                $scope.user.name[value] = index.displayName;                                
+//                                $scope.contacts.push(index);
+//                            }
+                        });
+//                        angular.forEach($scope.contacts, function (index, value) {
+//                            alert("index" + index.displayName.indexOf($scope.user.search) + index.displayName);
+//                            if (index.displayName.indexOf($scope.user.search) === 0) {
+//                                $scope.contact.push(index);
+//                                value = $scope.contact.length - 1;
+//                                $scope.email[value] = index.emails[0].value;
+//                                $scope.user.name[value] = index.displayName;
+//                            }
+//                        });
+//                        alert($scope.contact.length)
+//                        $scope.contacts = $scope.contact;
+                    });
+                } else {
+                    $scope.required = 1;
+                }
+            };
+            $scope.removeEmail = function (val) {
+                // alert(val)
+                var index = $scope.email.indexOf(val);
+                if ($scope.email[index] === val) {
+                    $scope.email.splice(index, 1);
+                    $scope.user.name.splice(index, 1);
+                } else {
+                    $scope.email.push(val);
+                }
+            }
+            $scope.user.email = $scope.email;
+            $scope.sendInvitation = function () {
+                console.log($scope.user.name);
+                var myPopup = $ionicPopup.show({
+                    templateUrl: 'templates/templates/send_invitation_popup.html',
+                    title: 'Send Invitation',
+                    scope: $scope,
+                    cssClass: 'send-container',
+                    buttons: [
+                        {text: 'Cancel', type: "button-danger"},
+                        {
+                            text: '<b>Send</b>',
+                            type: 'button-positive ',
+                            onTap: function (e) {
+                                if (!$scope.user.name) {
+                                    e.preventDefault();
+                                    alert("Please Eneter Name.")
+                                } else {
+                                    if (!$scope.user.group_id) {
+                                        $scope.user.group_id = group_id;
+                                    }
+                                    if ($scope.user.group_id == 1) {
+                                        $scope.user.group_id = $scope.user.group;
+                                    }
+                                    $scope.showLoading();
+                                    $scope.user.u_id = getStorage('user_id');
+                                    $rootScope.service.post('sendMultipleInvitation', $scope.user, function (res) {
+                                        $scope.hideLoading();
+                                        if (res.status == 1) {
+                                            alert(res.message);
+                                            $state.go($state.current, {}, {reload: true});
+
+                                        } else {
+                                            $scope.valid = 0;
+                                            alert(res.message);
+                                        }
+                                    });
+                                    if ($scope.valid == 0)
+                                        e.preventDefault();
+                                }
+                            }
+                        },
+                    ]
+                });
+            };
 
 
-
-
-
+        })
         .controller('AgentsCtrl', function ($scope, $rootScope, $ionicPopup, $timeout) {
             if (!$rootScope.agent) {
                 return;
