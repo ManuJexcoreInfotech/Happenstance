@@ -958,7 +958,7 @@ angular.module('app.controllers', [])
                 });
             }
             $scope.user.name = [];
-            $scope.contact = [];
+           
 //            $scope.user.search = 'M';
 //            angular.forEach($scope.contacts, function (index, value) {
 //                if (index.displayName.indexOf($scope.user.search) == 0) {
@@ -986,6 +986,7 @@ angular.module('app.controllers', [])
                     }, 2000);
                     $cordovaContacts.find({filter: ''}).then(function (contactsFound) {
                         $scope.contacts = contactsFound;
+						$scope.contact = [];
 //                        angular.forEach( $scope.contacts , function (index, value) {
 ////                            if (index.displayName.indexOf($scope.user.search) > -1) {
 //                                $scope.email[value] = index.emails[0].value;
