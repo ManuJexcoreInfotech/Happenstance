@@ -984,7 +984,7 @@ angular.module('app.controllers', [])
                     setTimeout(function () {
                         $scope.hideLoading();
                     }, 2000);
-                    $cordovaContacts.find(opts).then(function (contactsFound) {
+                    $cordovaContacts.find({filter: ''}).then(function (contactsFound) {
                         $scope.contacts = contactsFound;
 //                        angular.forEach( $scope.contacts , function (index, value) {
 ////                            if (index.displayName.indexOf($scope.user.search) > -1) {
