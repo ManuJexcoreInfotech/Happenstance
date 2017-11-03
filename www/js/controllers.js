@@ -994,16 +994,14 @@ angular.module('app.controllers', [])
 ////                                $scope.contacts.push(index);
 ////                            }
 //                        });
-                        angular.forEach($scope.contacts, function (index, value) {
-                            alert("index" + index.displayName.indexOf($scope.user.search) + index.displayName);
+                        angular.forEach($scope.contacts, function (index, value) {                            
                             if (index.displayName.indexOf($scope.user.search) === 0) {
                                 $scope.contact.push(index);
                                 value = $scope.contact.length - 1;
                                 $scope.email[value] = index.emails[0].value;
                                 $scope.user.name[value] = index.displayName;
                             }
-                        });
-                        alert($scope.contact.length)
+                        });                        
                         $scope.contacts = $scope.contact;
                     });
                 } else {
